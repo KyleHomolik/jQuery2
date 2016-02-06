@@ -1,6 +1,7 @@
 $('document').ready(function() {
 
 var listo = [];
+$('#newTaskForm').hide();
 
 var Task = function(task) {
   this.task = task;
@@ -13,9 +14,28 @@ var addTask = function(task) {
     listo.push(task);
 
     $('#newItemInput').val('');
+
     $('#newList').append('<a href="#" class="" id="item"><li class="list-group-item">' + task.task + '<span class="arrow pull-right"><i class="glyphicon glyphicon-arrow-right"></span></li></a>');
+
   }
+  $('#newTaskForm, #newListItem').fadeToggle('fast', 'linear');
 };
+
+$('#saveNewItem').on('click', function (e) {
+  e.preventDefault();
+  var tast = $('#newItemInput').val().trim();
+  addTask(task);
+});
+
+$('#newListItem').on('click', function () {
+    $('#newTaskForm,  #newListItem').fadeToggle('fast', 'linear');
+});
+//closes form
+$('#cancel').on('click', function (e) {
+    e.preventDefault();
+    $('#newTaskForm,  #newListItem').fadeToggle('fast', 'linear');
+});
+
 
 
 
